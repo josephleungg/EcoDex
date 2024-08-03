@@ -15,6 +15,10 @@ module.exports = {
         'pocketmonk': ['PocketMonk', 'sans-serif'],
         'gameboy': ['Gameboy', 'sans-serif'],
       },
+      colors: {
+        'primary': ['#74BE5F'],
+        'secondary': ['#D56060']
+      },
     },
   },
   plugins: [],
