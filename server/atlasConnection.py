@@ -1,7 +1,6 @@
-from flask import Flask
 from pymongo import MongoClient
 
-class AtlasClient():
+class AtlasClient ():
 
    def __init__ (self, altas_uri, dbname):
        self.mongodb_client = MongoClient(altas_uri)
@@ -19,19 +18,3 @@ class AtlasClient():
        collection = self.database[collection_name]
        items = list(collection.find(filter=filter, limit=limit))
        return items
-
-ATLAS_URI = "mongodb+srv://Kush:Kush76200413@test.f0kzruq.mongodb.net/?retryWrites=true&w=majority&appName=TEST"
-DB_NAME = 'TEST'
-
-atlas_client = AtlasClient (ATLAS_URI, DB_NAME)
-atlas_client.ping()
-print ('Connected to Atlas instance! We are good to go!')
-
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-if __name__ == '__main__':
-    app.run(debug=True)
