@@ -2,7 +2,7 @@ import os
 from flask import Flask, request
 from pymongo import MongoClient
 from dotenv import load_dotenv
-from .helpers.openAPICalls import openApiCall
+from helpers.openAPICalls import openApiCall
 
 class AtlasClient():
 
@@ -47,8 +47,10 @@ def test_payload_text():
 
 @app.route('/uploadImage', methods=['POST'])
 def upload_image():
-    response = openApiCall()
-    return "Success!"
+    key = os.environ.get("OPENAI_API_KEY")
+    response = openApiCall(key)
+    print(response)
+    return "COOL!"
 
 if __name__ == '__main__':
     app.run(debug=True)
