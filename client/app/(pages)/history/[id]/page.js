@@ -2,23 +2,9 @@
 import React, { useState, useEffect } from 'react';
 
 export default function HistoryItem({ params }) {
-  const { id, name } = params;
-  const [itemData, setItemData] = useState({
-    title: "title",
-    description: "A watermelon surrounded by dry leaves and remnants of its vine on the ground.",
-    typeOfWaste: "tow",
-    bioDegradable: "bd",
-    decomposeTime: "dt",
-    approximateWeight: "aw",
-    dimensions: "d",
-    litersOfWaste: "low",
-    image: "i"
-  });
-
-  // fetching the item data once it is mounted
-  useEffect(() => {
-    console.log('sup');
-  }, []);
+  const { id, data } = params;
+  const parsedData = data ? JSON.parse(decodeURIComponent(data)) : {};
+  const itemData = parsedData
 
   // this is how to access this dynamic page
   //  <Link href="/history/1?name=John%20Doe">
