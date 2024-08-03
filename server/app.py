@@ -45,13 +45,6 @@ CORS(app)
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/testpayload/text', methods=['POST'])
-def test_payload_text():
-    collection = atlas_client.get_collection('test')
-    collection.insert_one({'text': 'adasfsfds',
-                            'number': 123})
-    return "Success"
-
 @app.route('/uploadImage', methods=['PUT'])
 def upload_image():
     key = os.environ.get("OPENAI_API_KEY")
