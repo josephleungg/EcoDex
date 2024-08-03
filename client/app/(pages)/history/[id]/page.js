@@ -29,18 +29,19 @@ export default function HistoryItem({ params }) {
 
       {/* EcoDex title */}
       <div className="px-2 font-roboto">
-        <h1 className="font-black text-5xl tracking-wider my-4">EcoDex</h1>
+        <h1 className="font-black text-5xl tracking-wider mb-8">EcoDex</h1>
+      </div>
+
+      <div className="flex justify-center items-center">
+        <img
+          src="/images/ecodex.png"
+          alt="leaf"
+          className="h-48 w-48 rounded-3xl"
+          />
       </div>
 
       {/* EcoDex item */}
-      <div className="relative flex flex-col rounded-3xl bg-white shadow-md py-16 px-6 mx-2 mt-16 font-medium text-sm">
-        <div className="relative mb-20">
-          <img
-            src="/images/ecodex.png"
-            alt="leaf"
-            className="absolute top-[-10rem] left-1/2 transform -translate-x-1/2 h-48 w-48 rounded-3xl"
-          />
-        </div>
+      <div className="flex flex-col rounded-3xl bg-white shadow-md py-10 px-6 mx-2 my-12 font-medium text-sm">
 
         <div className="h-0.5 bg-gray-300 mb-3"></div>
 
