@@ -1,8 +1,11 @@
 import os
+import json
 from flask import Flask, request
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from flask_cors import CORS
 from helpers.openAPICalls import openApiCall
+from helpers.imgurAPIUpload import imgurUpload
 
 class AtlasClient():
 
@@ -34,6 +37,7 @@ atlas_client.ping()
 print ('Connected to Atlas instance! We are good to go!')
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -48,9 +52,37 @@ def test_payload_text():
 @app.route('/uploadImage', methods=['POST'])
 def upload_image():
     key = os.environ.get("OPENAI_API_KEY")
-    response = openApiCall(key)
-    print(response)
-    return "COOL!"
+    if 'file' not in request.files:
+        return "No file part", 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return "No selected file", 400
+
+    if file:
+        file_path = os.path.join('/tmp', file.filename)
+        file.save(file_path)
+
+        image = imgurUpload(file_path)
+        print("were here")
+        response = openApiCall(key, image)
+        #Parsing the response into a dictionary
+        response.message.content = response.message.content.replace('\n', '').replace('*','').split('content=', 1)[-1].split(', role=',1)[0]
+        substrings = ['Description', 'Type of Waste', 'Biodegradable', 'Decompose Time', 'Approximate Weight', 'Dimensions', 'Amount of Liters of Water to Produce']
+        for substring in substrings:
+            response.message.content = response.message.content.replace(substring, ', \"' + substring + '\"')
+        response.message.content = response.message.content.replace(', \"', '\", \"').replace(': ', ': \"')
+        response.message.content = response.message.content.replace('Title', '\"Title\"')
+
+        response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\"}'
+        print(response.message.content)
+
+        collection = atlas_client.get_collection('Image Attributes')
+        collection.insert_one(json.loads(response.message.content))
+        print(response)
+        return "Data uploaded"
+
 
 if __name__ == '__main__':
     app.run(debug=True)

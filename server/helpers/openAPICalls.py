@@ -2,7 +2,7 @@ import os
 from openai import OpenAI
 
 
-def openApiCall(key):
+def openApiCall(key, url):
 
 
     client = OpenAI(api_key=key)
@@ -30,7 +30,7 @@ def openApiCall(key):
                     {
                     "type": "image_url",
                     "image_url": {
-                        "url": "https://www.fixfactory.ca/wp-content/uploads/iPhone-12-and-12-Pro-Battery-Replacement-Fix-Factory-Canada.jpg",
+                        "url": url,
                         },
                     },
                 ],
