@@ -24,7 +24,7 @@ class AtlasClient():
 
 load_dotenv(".env")
 
-ATLAS_URI = "mongodb+srv://" + os.getenv('MOGNOUSERNAME') + ":" + os.getenv('MONGOPASSWORD') + "@test.f0kzruq.mongodb.net/?retryWrites=true&w=majority&appName=TEST"
+ATLAS_URI = os.getenv('ATLAS_URI')
 DB_NAME = 'TEST'
 
 
