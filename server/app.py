@@ -1,7 +1,7 @@
 import os
 import json
 from datetime import datetime
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -92,5 +92,15 @@ def upload_image():
     print(response.message.content)
     return response.message.content
 
+@app.route('/fetchhistory', methods=['GET'])
+def fetch_history():
+    collection = atlas_client.get_collection('Image Attributes')
+    items = list(collection.find())
+
+    # Convert ObjectId to string
+    for item in items:
+        item['_id'] = str(item['_id'])
+
+    return jsonify(items)
 if __name__ == '__main__':
     app.run(debug=True)
