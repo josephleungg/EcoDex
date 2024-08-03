@@ -6,7 +6,7 @@ export default function RootLayout({ children }) {
       <html>
         <body>
           <Header />
-            <main>{children}</main>
+            <main className="min-h-screen bg-[#dbdbdb] pt-28 pb-20">{children}</main>
           <Navbar />
         </body>
       </html>
