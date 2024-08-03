@@ -63,10 +63,14 @@ def upload_image():
         return "No selected file", 400
 
     if file:
-        file_path = os.path.join('/tmp', file.filename)
-        file.save(file_path)
+        if os.name == 'nt':  # Windows
+            file_path = os.path.join('.', file.filename)
+        else:  # Unix-based systems (like Linux and macOS)
+            file_path = os.path.join('/tmp', file.filename)
 
-        image = imgurUpload(file_path)
+    file.save(file_path)
+    image = imgurUpload(file_path)
+    print('got image file')
     today = str(datetime.today().date())
     response = openApiCall(key, image)
     
