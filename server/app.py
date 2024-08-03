@@ -1,8 +1,9 @@
 import os
-from flask import Flask, request
+import json
+from flask import Flask, jsonify
 from pymongo import MongoClient
 from dotenv import load_dotenv
-from .helpers.openAPICalls import openApiCall
+from helpers.openAPICalls import openApiCall
 
 class AtlasClient():
 
@@ -42,13 +43,32 @@ def hello_world():
 @app.route('/testpayload/text', methods=['POST'])
 def test_payload_text():
     collection = atlas_client.get_collection('test')
-    collection.insert_one({'text': 'adasfsfds'})
+    collection.insert_one({'text': 'adasfsfds',
+                            'number': 123})
     return "Success"
 
-@app.route('/uploadImage', methods=['POST'])
+@app.route('/uploadImage', methods=['PUT'])
 def upload_image():
-    response = openApiCall()
-    return "Success!"
+    key = os.environ.get('OPENAI_API_KEY')
+    response = openApiCall(key, image)
+    
+    #Parsing the response into a dictionary
+    response.message.content = response.message.content.replace('\n', '').replace('*','').split('content=', 1)[-1].split(', role=',1)[0]
+    substrings = ['Description', 'Type of Waste', 'Biodegradable', 'Decompose Time', 'Approximate Weight', 'Dimensions', 'Amount of Liters of Water to Produce']
+    
+    #adds double quotes around the fields
+    for substring in substrings:
+        response.message.content = response.message.content.replace(substring, ', \"' + substring + '\"')
+    
+    #adds double quotes around the values
+    response.message.content = response.message.content.replace(', \"', '\", \"').replace(': ', ': \"')
+    response.message.content = response.message.content.replace('Title', '\"Title\"')
+    response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\"}'
+
+    collection = atlas_client.get_collection('Image Attributes')
+    collection.insert_one(json.loads(response.message.content))
+    print(response)
+    return "Data uploaded"
 
 if __name__ == '__main__':
     app.run(debug=True)

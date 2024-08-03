@@ -2,12 +2,10 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
-load_dotenv("../.env")
+def openApiCall(key, url):
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+    client = OpenAI(api_key=key)
 
-def openApiCall():
-    
     response = client.chat.completions.create(
     
         model="gpt-4o-mini",
@@ -26,12 +24,12 @@ def openApiCall():
                                                 Approximate Dimensions:
                                                 Amount of Liters of Water to Produce: 
 
-                                                Try and give exact answers. For anything that youre unsure of, put N/A
+                                                Try and give exact answers. For anything that youre unsure of, put N/A. Do not use any * and do not make any text bold
                                                 """},
                     {
                     "type": "image_url",
                     "image_url": {
-                        "url": "https://www.fixfactory.ca/wp-content/uploads/iPhone-12-and-12-Pro-Battery-Replacement-Fix-Factory-Canada.jpg",
+                        "url": url,
                         },
                     },
                 ],
@@ -39,5 +37,4 @@ def openApiCall():
         ],
         max_tokens=300,
     )
-    
     return response.choices[0]
