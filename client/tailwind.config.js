@@ -16,7 +16,7 @@ module.exports = {
         'gameboy': ['Gameboy', 'sans-serif'],
       },
       colors: {
-        'primary': ['#537745'],
+        'primary': ['#74BE5F'],
         'secondary': ['#D56060']
       },
     },
