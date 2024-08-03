@@ -1,12 +1,10 @@
 import os
 from openai import OpenAI
 
-
 def openApiCall(key, url):
 
-
     client = OpenAI(api_key=key)
-    
+
     response = client.chat.completions.create(
     
         model="gpt-4o-mini",
@@ -25,7 +23,7 @@ def openApiCall(key, url):
                                                 Approximate Dimensions:
                                                 Amount of Liters of Water to Produce: 
 
-                                                Try and give exact answers. For anything that youre unsure of, put N/A
+                                                Try and give exact answers. For anything that youre unsure of, put N/A. Do not use any * and do not make any text bold
                                                 """},
                     {
                     "type": "image_url",
@@ -38,5 +36,4 @@ def openApiCall(key, url):
         ],
         max_tokens=300,
     )
-    
     return response.choices[0]
