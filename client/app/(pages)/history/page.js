@@ -118,7 +118,7 @@ export default function History() {
                         <h1 className="text-white font-bold text-xl tracking-wide">{trash.name}</h1>
                         <div className="flex items-center justify-between mt-2">
                             <div className="bg-white p-1 rounded-full opacity-65">
-                                <img src={typeIcons[trash.type] || typeIcons["Garbage"]} className="h-8 w-8"/>
+                                <img src={typeIcons[trash.type] || typeIcons["Garbage"]} className="h-10 w-10"/>
                             </div>
                             <img src={trash.imageURL} className="h-24 w-24"/>
                         </div>
