@@ -41,7 +41,7 @@ export default function Profile() {
     };
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center font-roboto">
             <div className="relative h-32 w-32 bg-white flex items-center justify-center rounded-full drop-shadow-2xl">
                 <img src={userImage} className="h-32 w-32 rounded-full object-cover" alt="User" />
                 <input
