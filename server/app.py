@@ -7,11 +7,12 @@ from dotenv import load_dotenv
 from flask_cors import CORS
 from helpers.openAPICalls import openApiCall
 from helpers.imgurAPIUpload import imgurUpload
+import certifi
 
 class AtlasClient():
 
    def __init__ (self, altas_uri, dbname):
-       self.mongodb_client = MongoClient(altas_uri)
+       self.mongodb_client = MongoClient(altas_uri, tlsCAFile=certifi.where())
        self.database = self.mongodb_client[dbname]
 
    ## A quick way to test if we can connect to Atlas instance
@@ -31,7 +32,6 @@ load_dotenv(".env")
 
 ATLAS_URI = os.getenv('MONGOURL')
 DB_NAME = 'TEST'
-
 
 atlas_client = AtlasClient (ATLAS_URI, DB_NAME)
 atlas_client.ping()
@@ -86,7 +86,7 @@ def upload_image():
     collection = atlas_client.get_collection('Image Attributes')
     collection.insert_one(json.loads(response.message.content))
     print(response.message.content)
-    return "Data uploaded"
+    return response.message.content
 
 if __name__ == '__main__':
     app.run(debug=True)
