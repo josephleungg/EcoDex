@@ -87,6 +87,5 @@ def upload_image():
     print(response)
     return "Data uploaded"
 
-
 if __name__ == '__main__':
     app.run(debug=True)

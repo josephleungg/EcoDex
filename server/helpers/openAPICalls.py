@@ -4,7 +4,6 @@ from openai import OpenAI
 def openApiCall(key, url):
 
     client = OpenAI(api_key=key)
-
     response = client.chat.completions.create(
     
         model="gpt-4o-mini",
