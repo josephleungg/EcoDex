@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from flask import Flask, request
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -52,7 +53,7 @@ def test_payload_text():
 
 @app.route('/uploadImage', methods=['PUT'])
 def upload_image():
-     key = os.environ.get("OPENAI_API_KEY")
+    key = os.environ.get("OPENAI_API_KEY")
     if 'file' not in request.files:
         return "No file part", 400
 
@@ -66,7 +67,7 @@ def upload_image():
         file.save(file_path)
 
         image = imgurUpload(file_path)
-    today = datetime.today().date()
+    today = str(datetime.today().date())
     response = openApiCall(key, image)
     
     #Parsing the response into a dictionary
@@ -84,7 +85,7 @@ def upload_image():
 
     collection = atlas_client.get_collection('Image Attributes')
     collection.insert_one(json.loads(response.message.content))
-    print(response)
+    print(response.message.content)
     return "Data uploaded"
 
 if __name__ == '__main__':
