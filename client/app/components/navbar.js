@@ -5,11 +5,33 @@ import React, { useState } from 'react';
 export default function Navbar() {
   const [selectedFile, setSelectedFile] = useState(null);
 
-    const handleFileChange = (event) => {
-        setSelectedFile(event.target.files[0]);
-    };
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    setSelectedFile(file);
 
-  return(
+    if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/uploadImage', {
+          method: 'PUT',
+          body: formData,
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          console.log('File uploaded successfully:', data);
+        } else {
+          console.error('File upload failed:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
+  };
+
+  return (
     <div className="flex flex-row fixed bottom-0 w-full bg-white p-2 items-center">
       
       {/* home button */}
@@ -46,17 +68,15 @@ export default function Navbar() {
 
       {/* profile button */}
       <div className="flex-grow text-center">
-        <Link href="profile">
+        <Link href="/profile">
           <img
             src='/images/profile.png'
-            alt="Home"
+            alt="Profile"
             className="h-10 w-10 mx-auto"
           />
           <p className="text-sm text-gray-400">Profile</p>
         </Link>
-        <button onClick={()=>{console.log(selectedFile)}}>test file upload</button>
       </div>
-
     </div>
   );
 }
