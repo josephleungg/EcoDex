@@ -12,12 +12,14 @@ module.exports = {
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {
-        'pocketmonk': ['PocketMonk', 'sans-serif'],
-        'gameboy': ['Gameboy', 'sans-serif'],
+        pocketmonk: ['PocketMonk', 'sans-serif'],
+        gameboy: ['Gameboy', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       colors: {
         'primary': ['#74BE5F'],
-        'secondary': ['#D56060']
+        'secondary': ['#D56060'],
+        'tertiary': ['#5C5A5A'],
       },
     },
   },
