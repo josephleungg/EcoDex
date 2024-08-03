@@ -5,7 +5,7 @@ export default function HistoryItem({ params }) {
   const { id, name } = params;
   const [itemData, setItemData] = useState({
     title: "title",
-    description: "desc",
+    description: "descasdfjglksdjfhglkjghdf;ljgfkgjs;lgjs;dflkgj;dlgkjask;gsfhndlgkjnfdglkfbgkfsdbfljdhgkjfh",
     typeOfWaste: "tow",
     bioDegradable: "bd",
     decomposeTime: "dt",
@@ -25,7 +25,7 @@ export default function HistoryItem({ params }) {
   //    <p>User 2</p>
   //  </Link>
   return (
-    <div>
+    <div className="">
 
       {/* EcoDex title */}
       <div className="px-2 font-roboto">
@@ -99,7 +99,7 @@ export default function HistoryItem({ params }) {
           <p className="">{itemData.litersOfWaste}</p>
         </div>
 
-        <div className="h-0.5 bg-gray-300 mb-3"></div>
+        <div className="h-0.5 bg-gray-300 my-3"></div>
 
       </div>
 
