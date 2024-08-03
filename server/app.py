@@ -24,7 +24,7 @@ class AtlasClient():
 
 load_dotenv(".env")
 
-ATLAS_URI = os.getenv('ATLAS_URI')
+ATLAS_URI = os.getenv('MONOGOURI')
 DB_NAME = 'TEST'
 
 
