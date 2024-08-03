@@ -7,6 +7,8 @@ export default function LaunchPage() {
       <Link href="/home">
         Go to Home Page
       </Link>
+      <h1 className="font-pocketmonk">Testing Font</h1>
+      <h1 className="font-gameboy">Testing Font</h1>
     </div>
   );
 }
