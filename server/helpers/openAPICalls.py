@@ -1,12 +1,11 @@
 import os
 from openai import OpenAI
-from dotenv import load_dotenv
 
-load_dotenv("../.env")
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+def openApiCall(key):
 
-def openApiCall():
+
+    client = OpenAI(api_key=key)
     
     response = client.chat.completions.create(
     
