@@ -1,10 +1,11 @@
 import os
 import json
-from datetime import datetime
-from flask import Flask, jsonify
+from flask import Flask, request
 from pymongo import MongoClient
 from dotenv import load_dotenv
+from flask_cors import CORS
 from helpers.openAPICalls import openApiCall
+from helpers.imgurAPIUpload import imgurUpload
 
 class AtlasClient():
 
@@ -36,6 +37,7 @@ atlas_client.ping()
 print ('Connected to Atlas instance! We are good to go!')
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def hello_world():
@@ -50,8 +52,21 @@ def test_payload_text():
 
 @app.route('/uploadImage', methods=['PUT'])
 def upload_image():
+     key = os.environ.get("OPENAI_API_KEY")
+    if 'file' not in request.files:
+        return "No file part", 400
+
+    file = request.files['file']
+
+    if file.filename == '':
+        return "No selected file", 400
+
+    if file:
+        file_path = os.path.join('/tmp', file.filename)
+        file.save(file_path)
+
+        image = imgurUpload(file_path)
     today = datetime.today().date()
-    key = os.environ.get('OPENAI_API_KEY')
     response = openApiCall(key, image)
     
     #Parsing the response into a dictionary
@@ -71,6 +86,7 @@ def upload_image():
     collection.insert_one(json.loads(response.message.content))
     print(response)
     return "Data uploaded"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
