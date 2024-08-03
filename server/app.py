@@ -1,5 +1,6 @@
 import os
 import json
+from datetime import datetime
 from flask import Flask, jsonify
 from pymongo import MongoClient
 from dotenv import load_dotenv
@@ -49,6 +50,7 @@ def test_payload_text():
 
 @app.route('/uploadImage', methods=['PUT'])
 def upload_image():
+    today = datetime.today().date()
     key = os.environ.get('OPENAI_API_KEY')
     response = openApiCall(key, image)
     
@@ -63,7 +65,7 @@ def upload_image():
     #adds double quotes around the values
     response.message.content = response.message.content.replace(', \"', '\", \"').replace(': ', ': \"')
     response.message.content = response.message.content.replace('Title', '\"Title\"')
-    response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\"}'
+    response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\", \"date\": \"' + today + '\"}'
 
     collection = atlas_client.get_collection('Image Attributes')
     collection.insert_one(json.loads(response.message.content))
