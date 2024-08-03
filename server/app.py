@@ -1,5 +1,7 @@
+import os
 from flask import Flask
 from pymongo import MongoClient
+from dotenv import load_dotenv
 
 class AtlasClient():
 
@@ -20,8 +22,11 @@ class AtlasClient():
        items = list(collection.find(filter=filter, limit=limit))
        return items
 
-ATLAS_URI = "mongodb+srv://Kush:Kush76200413@test.f0kzruq.mongodb.net/?retryWrites=true&w=majority&appName=TEST"
+load_dotenv(".env")
+
+ATLAS_URI = "mongodb+srv://" + os.getenv('MOGNOUSERNAME') + ":" + os.getenv('MONGOPASSWORD') + "@test.f0kzruq.mongodb.net/?retryWrites=true&w=majority&appName=TEST"
 DB_NAME = 'TEST'
+
 
 atlas_client = AtlasClient (ATLAS_URI, DB_NAME)
 atlas_client.ping()
