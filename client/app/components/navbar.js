@@ -1,23 +1,24 @@
-import { useState } from 'react';
+import Link from "next/link";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-blue-500 p-4">
-      <div className="flex justify-between items-center">
-        <div className="text-white text-lg font-bold">Logo</div>
-        <button onClick={() => setIsOpen(!isOpen)} className="text-white">
-          ☰
-        </button>
+    <nav className="bg-gray-50 p-8 fixed bottom-0 w-full flex justify-between rounded-lg">
+      <div>
+        <Link href="/home">Home</Link>
       </div>
-      {isOpen && (
-        <div className="mt-2">
-          <a href="#" className="block text-white">Home</a>
-          <a href="#" className="block text-white">About</a>
-          <a href="#" className="block text-white">Contact</a>
-        </div>
-      )}
+      <div>
+        <Link href='/history'>EcoDex</Link>
+      </div>
+      <div>
+        <Link href='/camera'>Camera</Link>
+      </div>
+      <div>
+        <Link href='/profile'>Profile</Link>
+      </div>
+      <div>
+        <Link href='/redeem'>Redeem</Link>
+      </div>
     </nav>
   );
 };
