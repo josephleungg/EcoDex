@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, request
 from pymongo import MongoClient
 from dotenv import load_dotenv
 
@@ -24,7 +24,7 @@ class AtlasClient():
 
 load_dotenv(".env")
 
-ATLAS_URI = os.getenv('MONOGOURL')
+ATLAS_URI = os.getenv('MONGOURL')
 DB_NAME = 'TEST'
 
 
@@ -37,6 +37,12 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
+
+@app.route('/testpayload/text', methods=['POST'])
+def test_payload_text():
+    collection = atlas_client.get_collection('test')
+    collection.insert_one({'text': 'adasfsfds'})
+    return "Success"
 
 if __name__ == '__main__':
     app.run(debug=True)
