@@ -98,23 +98,30 @@ export default function History() {
         imageURL: "/images/eco-coin.png"
     };
 
-    const trashArray = [trash1, trash2, trash3, trash4, trash5, trash6, trash7,trash1, trash2, trash3, trash4, trash5, trash6, trash7];
+    const trashArray = [trash1, trash2, trash3, trash4, trash5, trash6, trash7];
+
     const typeIcons = {
         "Garbage": "/images/bin.png",
         "Recycling": "/images/recycle.png",
         "Green Bin": "/images/compostable.png",
         "Yard Waste": "/images/backyard.png",
         "Battery Disposal": "/images/disposal.png",
-    }
+    };
 
-    const colors = ["bg-pastel-purple-0", "bg-pastel-red-0", "bg-pastel-green-0", "bg-pastel-yellow-0", "bg-pastel-orange-0"];
+    const typeColors = {
+        "Garbage": "bg-pastel-red-0",
+        "Recycling": "bg-pastel-purple-0",
+        "Green Bin": "bg-pastel-green-0",
+        "Yard Waste": "bg-pastel-orange-0",
+        "Battery Disposal": "bg-pastel-yellow-0",
+    };
 
     return (
         <div className="px-2 font-roboto">
             <h1 className="font-black text-5xl tracking-wider my-4">EcoDex</h1>
             <div className="flex flex-wrap justify-around mt-10">
                 {trashArray.map((trash, index) => (
-                    <div key={index} className={`${colors[index % colors.length]} rounded-lg drop-shadow-2xl w-48 h-40 mb-4 flex p-4 flex-col`}>
+                    <div key={index} className={`${typeColors[trash.type]} rounded-lg drop-shadow-2xl w-48 h-40 mb-4 flex p-4 flex-col`}>
                         <h1 className="text-white font-bold text-xl tracking-wide">{trash.name}</h1>
                         <div className="flex items-center justify-between mt-2">
                             <div className="bg-white p-1 rounded-full opacity-65">
