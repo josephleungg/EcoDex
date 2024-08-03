@@ -14,7 +14,7 @@ export default function Navbar() {
   }
 
   return(
-    <div className="flex flex-row fixed bottom-0 w-full bg-white p-4 items-center">
+    <div className="flex flex-row fixed bottom-0 w-full bg-white p-2 items-center">
       
       {/* home button */}
       <div className="flex-grow text-center" onClick={handleHomeClick}>
