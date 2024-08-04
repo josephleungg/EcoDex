@@ -91,9 +91,9 @@ export default function Redeem() {
    <div className="font-roboto mt-4 px-6">
      <h1 className="font-black text-5xl tracking-wider mb-8 mt-8">Redeem</h1>
      <div className="flex items-center justify-center flex-col">
-       <div className="bg-[#3D3D33] px-8 py-4 rounded-xl flex justify-center flex-col items-center fixed z-20 top-32 right-8">
+       <div className="bg-[#3D3D33] px-4 py-2 rounded-xl flex justify-center flex-col items-center fixed z-20 top-32 right-4">
          <div className="flex items-center justify-center">
-           <span className="text-[#d0ce5e] text-4xl font-bold mr-3">{pointBalance}</span>
+           <span className="text-[#d0ce5e] text-3xl font-bold mr-3">{pointBalance}</span>
            <img src="/images/eco-coin.png" className="h-8 w-8" />
          </div>
        </div>
