@@ -67,7 +67,7 @@ export default function Home() {
             </div>
 
             {/* div for found items */}
-            <div className="flex items-center justify-center bg-white mx-6 mb-16 rounded-lg py-4 font-gameboy border-2 border-black">
+            <div className="flex items-center justify-center bg-white mx-6 mb-12 rounded-lg py-6 px-4 font-gameboy border-2 border-black">
                 <p className="text-tertiary-0 text-2xl font-black tracking-wider text-center">You've found <span className="text-primary-0">{numberItems} </span> items!</p>
             </div>
 
