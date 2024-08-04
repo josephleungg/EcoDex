@@ -1,5 +1,6 @@
 import os
 import json
+from bson import ObjectId
 from datetime import datetime
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
@@ -97,10 +98,39 @@ def fetch_history():
     collection = atlas_client.get_collection('Image Attributes')
     items = list(collection.find())
 
-    # Convert ObjectId to string
+    # Convert ObjectId to string and strip trailing spaces from each field
     for item in items:
         item['_id'] = str(item['_id'])
+        for key, value in item.items():
+            if isinstance(value, str):
+                item[key] = value.rstrip()
 
     return jsonify(items)
+
+@app.route('/getitem', methods=['POST'])
+def fetch_item():
+    data = request.json  # Or request.form if sending form data
+    id_str = data.get('id')
+    if not id_str:
+        return jsonify({"error": "No ID provided"}), 400
+    
+    try:
+        # Convert id_str to ObjectId
+        item_id = ObjectId(id_str)
+    except Exception as e:
+        return jsonify({"error": f"Invalid ID format: {e}"}), 400
+
+    try:
+        item = atlas_client.get_collection('Image Attributes').find_one({'_id': item_id})
+        if not item:
+            return jsonify({"error": "Item not found"}), 404
+
+        # Convert ObjectId to string
+        item['_id'] = str(item['_id'])
+        
+        return jsonify(item)
+    except Exception as e:
+        return jsonify({"error": f"Database error: {e}"}), 500
+
 if __name__ == '__main__':
     app.run(debug=True)

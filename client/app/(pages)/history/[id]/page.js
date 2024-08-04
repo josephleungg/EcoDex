@@ -2,14 +2,50 @@
 import React, { useState, useEffect } from 'react';
 
 export default function HistoryItem({ params }) {
-  const { id, data } = params;
-  const parsedData = data ? JSON.parse(decodeURIComponent(data)) : {};
-  const itemData = parsedData
+  const { id } = params;
+  const [itemData, setItemData] = useState({});
+  const [typeColor, setTypeColor] = useState("bg-white text-black");
 
-  // this is how to access this dynamic page
-  //  <Link href="/history/1?name=John%20Doe">
-  //    <p>User 2</p>
-  //  </Link>
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/getitem', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id }),
+        });
+        const data = await response.json();
+        
+        // Strip trailing spaces from string values
+        const cleanedData = Object.fromEntries(
+          Object.entries(data).map(([key, value]) => 
+            [key, typeof value === 'string' ? value.trim() : value]
+          )
+        );
+
+        if(cleanedData["Type of Waste"] === "Garbage"){
+          setTypeColor("bg-gray-900 text-white");
+        }else if(cleanedData["Type of Waste"] === "Recycling"){
+          setTypeColor("bg-blue-500 text-white");
+        }else if(cleanedData["Type of Waste"] === "Green Bin"){
+          setTypeColor("bg-green-500 text-white");
+        }else if(cleanedData["Type of Waste"] === "Yard Waste"){
+          setTypeColor("bg-yellow-500 text-white");
+        }else if(cleanedData["Type of Waste"] === "Battery Disposal"){
+          setTypeColor("bg-red-500 text-white");
+        }
+
+        setItemData(cleanedData);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <div className="mb-16">
 
@@ -18,9 +54,9 @@ export default function HistoryItem({ params }) {
         <h1 className="font-black text-5xl tracking-wider mb-8">EcoDex</h1>
       </div>
 
-      <div className="flex justify-center items-center mt-2 drop-shadow-2xl">
+      <div className="flex justify-center items-center my-2 drop-shadow-2xl">
         <img
-          src="/images/ecodex.png"
+          src={itemData["image"]}
           alt="leaf"
           className="h-48 w-48 rounded-3xl"
         />
@@ -31,55 +67,57 @@ export default function HistoryItem({ params }) {
 
         <div className="flex flex-row pb-3 justify-between">
           <p className="text-gray-400">Name</p>
-          <p className="">{itemData.title}</p>
+          <p className="">{itemData["Title"]}</p>
         </div>
         <hr />
 
         <div className="flex flex-row py-3 justify-between flex-wrap">
           <p className="text-gray-400 flex-1">Description</p>
-          <p className="flex-1 break-words whitespace-normal text-right">{itemData.description}</p>
+          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Description"]}</p>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between">
           <p className="text-gray-400">Type of Waste</p>
-          <p className="">{itemData.typeOfWaste}</p>
+          <div className={`${typeColor} rounded-lg p-2 font-gameboy text-xs shadow-md`}>
+            <p className="">{itemData["Type of Waste"]}</p>
+          </div>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between">
           <p className="text-gray-400">Biodegradable</p>
-          <p className="">{itemData.bioDegradable}</p>
+          <p className="">{itemData["Biodegradable"]}</p>
         </div>
 
         <hr />
 
-        <div className="flex flex-row py-3 justify-between">
-          <p className="text-gray-400">Decompose Time</p>
-          <p className="">{itemData.decomposeTime}</p>
+        <div className="flex flex-row py-3 justify-between flex-wrap">
+          <p className="text-gray-400 flex-1">Decompose</p>
+          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Decompose Time"]}</p>
         </div>
 
         <hr />
 
-        <div className="flex flex-row py-3 justify-between">
-          <p className="text-gray-400">Approximate Weight</p>
-          <p className="">{itemData.approximateWeight}</p>
+        <div className="flex flex-row py-3 justify-between flex-wrap">
+          <p className="text-gray-400 flex-1">Weight</p>
+          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Approximate Weight"]}</p>
         </div>
 
         <hr />
 
-        <div className="flex flex-row py-3 justify-between">
-          <p className="text-gray-400">Dimensions</p>
-          <p className="">{itemData.dimensions}</p>
+        <div className="flex flex-row py-3 justify-between flex-wrap">
+          <p className="text-gray-400 flex-1">Dimensions</p>
+          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Dimensions"]}</p>
         </div>
 
         <hr />
 
-        <div className="flex flex-row py-3 justify-between">
-          <p className="text-gray-400">Liters of Water Used</p>
-          <p className="">{itemData.litersOfWaste}</p>
+        <div className="flex flex-row py-3 justify-between flex-wrap">
+          <p className="text-gray-400 flex-1">Water Used (L)</p>
+          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Amount of Liters of Water to Produce"]}</p>
         </div>
 
         <hr />

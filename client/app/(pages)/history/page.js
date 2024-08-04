@@ -22,7 +22,15 @@ export default function History() {
     };
 
     useEffect(() => {
-        console.log('sup')
+        try{
+            fetch("http://127.0.0.1:5000/fetchhistory")
+            .then((res) => res.json())
+            .then((data) => {
+                setTrashArray(data);
+            });
+        }catch(e){
+            console.error(e);
+        }
     },[]);
 
     return (
@@ -30,19 +38,18 @@ export default function History() {
             <h1 className="font-black text-5xl tracking-wider my-4">EcoDex</h1>
             <div className="flex flex-wrap justify-around mt-10">
             {trashArray.map((trash, index) => {
-                const serializedData = encodeURIComponent(JSON.stringify(trash));
 
                 return (
-                    <Link key={index} href={`/history/${index}?data=${serializedData}`}>
-                    <div className={`${typeColors[trash.type]} rounded-lg drop-shadow-2xl w-48 h-40 mb-4 flex p-4 flex-col`}>
-                        <h1 className="text-white font-bold text-xl tracking-wide">{trash.name}</h1>
-                        <div className="flex items-center justify-between mt-2">
-                        <div className="bg-white p-1 rounded-full opacity-65">
-                            <img src={typeIcons[trash.type] || typeIcons["Garbage"]} className="h-10 w-10" />
+                    <Link key={index} href={`/history/${trash["_id"]}`}>
+                        <div className={`${typeColors[trash["Type of Waste"]]} rounded-lg drop-shadow-2xl w-48 h-40 mb-4 flex p-4 flex-col`}>
+                            <h1 className="text-white font-bold text-xl tracking-wide">{trash["Title"]}</h1>
+                            <div className="flex items-center justify-between mt-2">
+                                <div className="bg-white p-1 rounded-full opacity-65">
+                                    <img src={typeIcons[trash["Type of Waste"]] || typeIcons["Garbage"]} className="h-10 w-10" />
+                                </div>
+                                <img src={trash["image"]} className="h-24 w-24" />
+                            </div>
                         </div>
-                        <img src={trash.imageURL} className="h-24 w-24" />
-                        </div>
-                    </div>
                     </Link>
                 );
             })}
