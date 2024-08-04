@@ -41,13 +41,13 @@ export default function History() {
 
                 return (
                     <Link key={index} href={`/history/${trash["_id"]}`}>
-                        <div className={`${typeColors[trash["Type of Waste"]]} rounded-lg drop-shadow-2xl w-48 h-40 mb-4 flex p-4 flex-col`}>
-                            <h1 className="text-white font-bold text-xl tracking-wide">{trash["Title"]}</h1>
-                            <div className="flex items-center justify-between mt-2">
+                        <div className={`${typeColors[trash["Type of Waste"]]} rounded-lg drop-shadow-2xl w-44 h-48 mb-4 flex p-4 flex-col`}>
+                            <h1 className="text-white font-bold text-xl tracking-wide mb-2">{trash["Title"]}</h1>
+                            <div className="flex items-center justify-between mt-4">
                                 <div className="bg-white p-1 rounded-full opacity-65">
                                     <img src={typeIcons[trash["Type of Waste"]] || typeIcons["Garbage"]} className="h-10 w-10" />
                                 </div>
-                                <img src={trash["image"]} className="h-24 w-24" />
+                                <img src={trash["image"]} className="object-cover h-20 w-20" />
                             </div>
                         </div>
                     </Link>

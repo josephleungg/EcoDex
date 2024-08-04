@@ -3,8 +3,30 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 
 export default function Home() {
-    const [headerText, setHeaderText] = useState("Environmental Fact ");
-    const headerSentences = ["recycling is good", "deforestation harms biodiversity", "plastic pollutes oceans", "air pollution kills millions", "climate change raises temperatures","water scarcity affects billions","renewable energy reduces emissions","planting trees combats CO2","overfishing depletes oceans", "sustainable living is the future"];
+    const [headerText, setHeaderText] = useState("");
+    const headerSentences = [
+        "Proper garbage disposal reduces the risk of disease by preventing the spread of bacteria and viruses.",
+        "Recycling can significantly reduce the amount of waste sent to landfills, conserving space and reducing pollution.",
+        "Improper disposal of hazardous waste can lead to soil and water contamination, harming wildlife and human health.",
+        "Proper waste management reduces greenhouse gas emissions from landfills, helping to mitigate climate change.",
+        "Composting organic waste reduces methane emissions and produces nutrient-rich soil for gardening and agriculture.",
+        "By separating recyclables, we can recover valuable materials and reduce the need for new raw materials.",
+        "Proper garbage disposal helps prevent littering, which can harm wildlife and degrade natural landscapes.",
+        "Recycling conserves energy by using less energy to produce new products from recycled materials compared to raw materials.",
+        "Proper disposal of electronic waste prevents harmful chemicals from leaching into the environment.",
+        "Waste reduction through reusing and recycling can save money for both individuals and municipalities.",
+        "Proper waste management can create jobs in the recycling and waste management industries.",
+        "Disposing of waste properly can improve community health and safety by reducing vermin and pests.",
+        "Proper garbage disposal helps protect marine life by reducing the amount of plastic and other debris that ends up in the oceans.",
+        "Reducing waste can save natural resources, such as timber, water, and minerals, by using recycled materials.",
+        "Proper waste disposal helps maintain the aesthetic beauty of our surroundings and promotes a cleaner environment.",
+        "Efficient waste management systems can reduce the burden on landfills and extend their operational lifespan.",
+        "Proper disposal of medical waste prevents the spread of infections and protects public health.",
+        "Recycling helps reduce the demand for new raw materials, which can lead to fewer deforestation and mining activities.",
+        "Proper garbage disposal practices can lead to more sustainable urban development and cleaner cities.",
+        "Educating the public on proper waste disposal can foster a sense of environmental responsibility and community pride."
+      ];
+      
     const [numberItems, setNumberItems] = useState(0);
     const [numberPoints, setNumberPoints] = useState(0);
     const [numberNextReward, setNumberNextReward] = useState(0);
@@ -23,18 +45,29 @@ export default function Home() {
             console.error('Error fetching data:', error);
         }
     }, [])
+    useEffect(() => {
+        // Disable scrolling
+        document.documentElement.style.overflowY = 'hidden';
+        document.body.style.overflowY = 'hidden';
+    
+        // Cleanup on unmount
+        return () => {
+          document.documentElement.style.overflowY = 'auto';
+          document.body.style.overflowY = 'auto';
+        };
+      }, []);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col font-roboto">
 
             {/* div for header text */}
-            <div className="my-12 flex flex-col justify-center items-center">
-                <h1 className="text-sm text-tertiary-0 font-roboto font-medium">{headerText}</h1>
+            <div className="my-12 flex flex-col justify-center items-center px-4">
+                <h1 className="text-md text-tertiary-0 font-medium text-center">{headerText}</h1>
             </div>
 
             {/* div for found items */}
-            <div className="flex items-center justify-center bg-white mx-1 mb-20 rounded-xl">
-                <p className="text-tertiary-0 font-roboto text-2xl">You've found <span className="text-primary-0 font-semibold">{numberItems} </span> items!</p>
+            <div className="flex items-center justify-center bg-white mx-6 mb-16 rounded-lg py-4 font-gameboy border-2 border-black">
+                <p className="text-tertiary-0 text-2xl font-black tracking-wider text-center">You've found <span className="text-primary-0">{numberItems} </span> items!</p>
             </div>
 
         
@@ -42,28 +75,28 @@ export default function Home() {
             <div className="mb-2">
                 {/* div for redeem points */}
                 <Link href="/redeem">
-                    <div className="flex flex-row rounded-lg space-x-16 items-center mx-1 p-2 bg-[#4D5F48] mb-2 active:bg-green-900 transition-colors duration-200">
+                    <div className="flex flex-row rounded-lg items-center justify-around mx-1 px-2 py-4 bg-[#4D5F48] mb-2 active:bg-green-900 transition-colors duration-200">
                         <img 
                             src="/images/eco-coin.png"
                             alt="leaf"
                             className="h-16 w-16"
                         />
                         <div className="flex items-center">
-                            <p className="text-white text-xl font-roboto font-medium">Redeem Points</p>
+                            <p className="text-white text-3xl font-pocketmonk" style={{letterSpacing: ".4rem"}}>Redeem Points</p>
                         </div>
                     </div>
                 </Link>
 
                 {/* div for view ecodex button */}
                 <Link href="/history" >
-                    <div className="flex flex-row rounded-lg space-x-16 items-center mx-1 p-2 bg-secondary-0 active:bg-red-700 transition-colors duration-200">
+                    <div className="flex flex-row rounded-lg items-center justify-around mx-1 px-2 py-4 bg-secondary-0 active:bg-red-700 transition-colors duration-200">
                         <img 
                             src="/images/book.png"
                             alt="leaf"
                             className="h-16 w-16"
                         />
                         <div className="flex items-center">
-                            <p className="text-white text-xl font-roboto font-medium">View EcoDex</p>
+                            <p className="text-white text-3xl font-pocketmonk" style={{letterSpacing: ".4rem"}}>View <span className="text-primary-0">Eco</span>Dex</p>
                         </div>
                     </div>
                 </Link>
@@ -74,20 +107,20 @@ export default function Home() {
                 
                 {/* div for number found */}
                 <div className="flex flex-col flex-grow justify-center items-center bg-[#8B8B65] px-6 py-2 rounded-lg">
-                    <p className="text-[#3D3D33] font-roboto font-bold text-3xl">{numberItems}</p>
-                    <p className="text-gray-300 font-roboto font-medium text-md">Found</p>
+                    <p className="text-[#3D3D33] font-bold text-3xl">{numberItems}</p>
+                    <p className="text-gray-300 font-medium text-md">Found</p>
                 </div>
 
                 {/* div for number of points */}
                 <div className="flex flex-col flex-grow justify-center items-center bg-[#8B8B65] px-6 py-2 rounded-lg">
-                    <p className="text-[#3D3D33] font-roboto font-bold text-3xl">{numberPoints}</p>
-                    <p className="text-gray-300 font-roboto font-medium text-md">Points</p>
+                    <p className="text-[#3D3D33] font-bold text-3xl">{numberPoints}</p>
+                    <p className="text-gray-300 font-medium text-md">Points</p>
                 </div>
 
                 {/* div for number for next reward */}
                 <div className="flex flex-col flex-grow justify-center items-center bg-[#8B8B65] py-2 rounded-lg">
-                    <p className="text-[#3D3D33] font-roboto font-bold text-3xl">{numberNextReward}</p>
-                    <p className="text-gray-300 font-roboto font-medium text-md">Next Reward</p>
+                    <p className="text-[#3D3D33] font-bold text-3xl">{numberNextReward}</p>
+                    <p className="text-gray-300 font-medium text-md">Next Reward</p>
                 </div>
             </div>
             

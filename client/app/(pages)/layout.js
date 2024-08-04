@@ -17,12 +17,13 @@ export default function RootLayout({ children }) {
           <div>
             <Header />
               <main
-                className="min-h-screen bg-[#dbdbdb] py-28"
+                className="min-h-screen bg-[#dbdbdb] py-28 object-fill"
                 style={{
                   backgroundImage: 'url(/images/ecodex-leaf-opacity.png)',
                   backgroundSize: '80% auto',
                   backgroundRepeat: 'no-repeat',
                   backgroundPosition: 'center',
+                  backgroundAttachment: 'fixed', 
                 }}
               >
                 {children}
