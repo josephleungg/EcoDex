@@ -126,7 +126,6 @@ export default function Redeem() {
                  <button className="bg-pastel-green-0 text-white px-4 py-2 rounded" onClick={handleConfirm}>Yes</button>
                </div>
              )}
-             {console.log(selectedPrize?.points)}
              {pointBalance < selectedPrize?.points && (
                <div className="flex justify-center">
                  <button className="bg-pastel-purple-0 text-white px-4 py-2 rounded" onClick={handleClose}>Okay</button>
