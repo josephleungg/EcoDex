@@ -3,12 +3,14 @@ import Link from 'next/link';
 
 export default function LaunchPage() {
   return (
-    <div className="">
+    <div className="flex flex-col items-center justify-center h-screen bg-[#3D3D33]">
+      <h1 className="font-pocketmonk text-white text-8xl pb-4">Welcome</h1>
+      <img src="/images/ecodex.png" className="h-80 w-auto rounded-2xl mb-6" />
       <Link href="/home">
-        Go to Home Page
+        <div className="py-12 px-8 bg-green-600 font-gameboy text-white rounded-xl text-2xl font-black drop-shadow-2xl">
+          Launch App
+        </div>
       </Link>
-      <h1 className="font-pocketmonk">Testing Font</h1>
-      <h1 className="font-gameboy">Testing Font</h1>
     </div>
   );
 }

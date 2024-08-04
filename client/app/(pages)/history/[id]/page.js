@@ -58,7 +58,7 @@ export default function HistoryItem({ params }) {
         <img
           src={itemData["image"]}
           alt="leaf"
-          className="h-48 w-48 rounded-3xl"
+          className="h-60 w-60 rounded-3xl object-cover"
         />
       </div>
 
@@ -67,57 +67,57 @@ export default function HistoryItem({ params }) {
 
         <div className="flex flex-row pb-3 justify-between">
           <p className="text-gray-400">Name</p>
-          <p className="">{itemData["Title"]}</p>
+          <p className="font-normal text-tertiary-0">{itemData["Title"]}</p>
         </div>
         <hr />
 
         <div className="flex flex-row py-3 justify-between flex-wrap">
-          <p className="text-gray-400 flex-1">Description</p>
-          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Description"]}</p>
+          <p className="text-gray-400 flex-1 basis-1/3">Description</p>
+          <p className="flex-1 break-words whitespace-normal text-right font-normal text-tertiary-0 basis-2/3">{itemData["Description"]}</p>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between">
-          <p className="text-gray-400">Type of Waste</p>
+          <p className="text-gray-400 basis-1/3">Type of Waste</p>
           <div className={`${typeColor} rounded-lg p-2 font-gameboy text-xs shadow-md`}>
-            <p className="">{itemData["Type of Waste"]}</p>
+            <p className=" font-normal text-tertiary-0 basis-2/3">{itemData["Type of Waste"]}</p>
           </div>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between">
-          <p className="text-gray-400">Biodegradable</p>
-          <p className="">{itemData["Biodegradable"]}</p>
+          <p className="text-gray-400 basis-1/3">Biodegradable</p>
+          <p className=" font-normal text-tertiary-0 basis-2/3 text-right">{itemData["Biodegradable"]}</p>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between flex-wrap">
-          <p className="text-gray-400 flex-1">Decompose</p>
-          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Decompose Time"]}</p>
+          <p className="text-gray-400 flex-1 basis-1/3">Decompose</p>
+          <p className="flex-1 break-words whitespace-normal text-right font-normal text-tertiary-0 basis-2/3">{itemData["Decompose Time"]}</p>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between flex-wrap">
-          <p className="text-gray-400 flex-1">Weight</p>
-          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Approximate Weight"]}</p>
+          <p className="text-gray-400 flex-1 basis-1/3">Weight</p>
+          <p className="flex-1 break-words whitespace-normal text-right font-normal text-tertiary-0 basis-2/3">{itemData["Approximate Weight"]}</p>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between flex-wrap">
-          <p className="text-gray-400 flex-1">Dimensions</p>
-          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Dimensions"]}</p>
+          <p className="text-gray-400 flex-1 basis-1/3">Dimensions</p>
+          <p className="flex-1 break-words whitespace-normal text-right font-normal text-tertiary-0 basis-2/3">{itemData["Dimensions"]}</p>
         </div>
 
         <hr />
 
         <div className="flex flex-row py-3 justify-between flex-wrap">
-          <p className="text-gray-400 flex-1">Water Used (L)</p>
-          <p className="flex-1 break-words whitespace-normal text-right">{itemData["Amount of Liters of Water to Produce"]}</p>
+          <p className="text-gray-400 flex-1 basis-1/3">Water Used (L)</p>
+          <p className="flex-1 break-words whitespace-normal text-right font-normal text-tertiary-0 basis-2/3">{itemData["Amount of Liters of Water to Produce"]}</p>
         </div>
 
         <hr />
