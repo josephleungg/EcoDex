@@ -1,5 +1,5 @@
 'use client'; // Ensure this is at the top of the file
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const redemptionPrizes = [
   { points: 10, description: "Plant a tree in a reforestation project.", imageURL: "/images/forest.png" },
@@ -19,6 +19,18 @@ export default function Redeem() {
   const [selectedPrize, setSelectedPrize] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
+
+  useEffect(() => {
+    try {
+        fetch('http://127.0.0.1:5000/getnumbers')
+            .then((response) => response.json())
+            .then((data) => {
+                setPointBalance(data.points);
+            });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+  }, []) 
 
   const handleRedeemClick = (prize) => {
     if (pointBalance < prize.points) {
