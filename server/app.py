@@ -72,6 +72,16 @@ def upload_image():
     image = imgurUpload(file_path)
     print('got image file')
     today = str(datetime.today().date())
+    # Get the user's document
+    collection = atlas_client.get_collection('Tokens')
+    user_doc = collection.find_one({'_id': "66aebc350f395a956c3c050b"})
+    
+    # Convert the 'Tokens' field to an integer and increment it
+    if user_doc is not None and 'Tokens' in user_doc:
+        user_doc['Tokens'] = int(user_doc['Tokens']) + 1
+    
+    # Update the document in the database
+    collection.update_one({'_id': "66aebc350f395a956c3c050b"}, {'$set': {'Tokens': user_doc['Tokens']}})
     response = openApiCall(key, image)
     
     #Parsing the response into a dictionary
