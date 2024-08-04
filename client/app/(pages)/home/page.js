@@ -12,6 +12,16 @@ export default function Home() {
     useEffect(() => {
         const randomIndex = Math.floor(Math.random() * headerSentences.length);
         setHeaderText(headerText + headerSentences[randomIndex]);
+        try {
+            fetch('http://127.0.0.1:5000/getnumbers')
+                .then((response) => response.json())
+                .then((data) => {
+                    setNumberItems(data.numberFound);
+                    setNumberPoints(data.points);
+                });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }, [])
 
     return (

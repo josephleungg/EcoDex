@@ -181,5 +181,24 @@ def fetch_balance():
     
     return jsonify({"balance": new_balance})
 
+@app.route('/getnumbers', methods=['GET'])
+def get_numbers():
+    collection = atlas_client.get_collection('Image Attributes')
+    items = list(collection.find())
+    number = len(items)
+
+    tokenCollection = atlas_client.get_collection('Tokens')
+    token_id = ObjectId("66aebc350f395a956c3c050b")
+    token_doc = tokenCollection.find_one({'_id': token_id})
+
+    print(token_doc)
+
+    if token_doc is not None and 'balance' in token_doc:
+        numToken = int(token_doc['balance'])
+    else:
+        print("Token document not found or 'balance' field is missing")
+    
+    return jsonify({"numberFound": number, "points": numToken})
+
 if __name__ == '__main__':
     app.run(debug=True)
