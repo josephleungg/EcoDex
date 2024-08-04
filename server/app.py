@@ -89,9 +89,18 @@ def upload_image():
     response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\", \"date\": \"' + today + '\"}'
 
     collection = atlas_client.get_collection('Image Attributes')
-    collection.insert_one(json.loads(response.message.content))
-    print(response.message.content)
-    return response.message.content
+    result = collection.insert_one(json.loads(response.message.content))
+
+    # Create a response object
+    response_data = {
+        "inserted_id": str(result.inserted_id),
+        "ok": True
+    }
+
+    print(response_data)
+
+    # Return the response as JSON
+    return jsonify(response_data)
 
 @app.route('/fetchhistory', methods=['GET'])
 def fetch_history():
