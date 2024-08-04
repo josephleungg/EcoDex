@@ -81,7 +81,7 @@ export default function HistoryItem({ params }) {
         <div className="flex flex-row py-3 justify-between">
           <p className="text-gray-400 basis-1/3">Type of Waste</p>
           <div className={`${typeColor} rounded-lg p-2 font-gameboy text-xs shadow-md`}>
-            <p className=" font-normal text-tertiary-0 basis-2/3">{itemData["Type of Waste"]}</p>
+            <p className=" font-normal text-white basis-2/3">{itemData["Type of Waste"]}</p>
           </div>
         </div>
 
