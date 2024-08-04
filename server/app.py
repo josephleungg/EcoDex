@@ -191,14 +191,22 @@ def get_numbers():
     token_id = ObjectId("66aebc350f395a956c3c050b")
     token_doc = tokenCollection.find_one({'_id': token_id})
 
+    contribution_id = ObjectId("66aeee08ad4e3361c0cd77e9")
+    contribution_doc = atlas_client.get_collection('Tokens').find_one({'_id': contribution_id})
+
     print(token_doc)
 
     if token_doc is not None and 'balance' in token_doc:
         numToken = int(token_doc['balance'])
     else:
         print("Token document not found or 'balance' field is missing")
+
+    if contribution_doc is not None and 'contributions' in contribution_doc:
+        numContributions = int(contribution_doc['contributions'])
+    else:
+        print("Contributions document not found or 'contributions' field is missing")
     
-    return jsonify({"numberFound": number, "points": numToken})
+    return jsonify({"numberFound": number, "points": numToken, "contributions": numContributions})
 
 @app.route('/redeem', methods=['POST'])
 def redeem_points():

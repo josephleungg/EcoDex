@@ -40,6 +40,7 @@ export default function Home() {
                 .then((data) => {
                     setNumberItems(data.numberFound);
                     setNumberPoints(data.points);
+                    setNumberNextReward(data.contributions);
                 });
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -120,7 +121,7 @@ export default function Home() {
                 {/* div for number for next reward */}
                 <div className="flex flex-col flex-grow justify-center items-center bg-[#8B8B65] py-2 rounded-lg">
                     <p className="text-[#3D3D33] font-bold text-3xl">{numberNextReward}</p>
-                    <p className="text-gray-300 font-medium text-md">Next Reward</p>
+                    <p className="text-gray-300 font-medium text-md">Contributions</p>
                 </div>
             </div>
             
