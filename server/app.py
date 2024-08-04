@@ -200,5 +200,22 @@ def get_numbers():
     
     return jsonify({"numberFound": number, "points": numToken})
 
+@app.route('/redeem', methods=['POST'])
+def redeem_points():
+    points = request.json.get('points')
+    print(points)
+    token_id = ObjectId("66aebc350f395a956c3c050b")
+    token_doc = atlas_client.get_collection('Tokens').find_one({'_id': token_id})
+
+    print(token_doc)
+
+    if token_doc is not None and 'balance' in token_doc:
+        new_balance = int(token_doc['balance']) - points
+        atlas_client.get_collection('Tokens').update_one({'_id': token_id}, {'$set': {'balance': new_balance}})
+    else:
+        print("Token document not found or 'balance' field is missing")
+
+    return jsonify({"balance": new_balance})
+
 if __name__ == '__main__':
     app.run(debug=True)
