@@ -22,7 +22,7 @@ const Header = () => {
                 </div>
             </Link>
             <Link href="/history">
-                <div className="h-20 w-20 absolute top-4 right-8 bg-secondary-0 flex justify-center items-center rounded-full border-rose-400 border-4 drop-shadow-2xl">
+                <div className="h-20 w-20 absolute top-4 right-12 bg-secondary-0 flex justify-center items-center rounded-full border-rose-400 border-4 drop-shadow-2xl">
                     <img
                         src="/images/book.png"
                         alt="EcoDex Icon"
