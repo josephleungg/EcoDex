@@ -24,6 +24,7 @@ def openApiCall(key, url):
 
                                                 Try and give exact answers. For anything that youre unsure of, put N/A. Do not use any * and do not make any text bold.
                                                 This is meant to be a way to get the enviromental information of a product. 
+                                                If the image is not clear or there is not a clear product, just return an error message.
                                                 """},
                     {
                     "type": "image_url",

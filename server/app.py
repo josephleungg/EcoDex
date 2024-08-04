@@ -6,6 +6,7 @@ from flask import Flask, request, jsonify
 from pymongo import MongoClient
 from dotenv import load_dotenv
 from flask_cors import CORS
+from PIL import Image
 from helpers.openAPICalls import openApiCall
 from helpers.imgurAPIUpload import imgurUpload
 import certifi
@@ -45,13 +46,6 @@ CORS(app)
 def hello_world():
     return 'Hello, World!'
 
-@app.route('/testpayload/text', methods=['POST'])
-def test_payload_text():
-    collection = atlas_client.get_collection('test')
-    collection.insert_one({'text': 'adasfsfds',
-                            'number': 123})
-    return "Success"
-
 @app.route('/uploadImage', methods=['PUT'])
 def upload_image():
     key = os.environ.get("OPENAI_API_KEY")
@@ -64,29 +58,58 @@ def upload_image():
         return "No selected file", 400
 
     if file:
-        if os.name == 'nt':  # Windows
-            file_path = os.path.join('.', file.filename)
-        else:  # Unix-based systems (like Linux and macOS)
-            file_path = os.path.join('/tmp', file.filename)
+        image = Image.open(file)
+        if image.format != 'JPEG' or image.format != 'JPG':
+            image = image.convert('RGB')
+            file_path = os.path.join('/tmp', file.filename.rsplit('.', 1)[0] + '.jpeg')
+            image.save(file_path, 'JPEG')
+        else:
+            if os.name == 'nt':  # Windows
+                file_path = os.path.join('.', file.filename)
+            else:  # Unix-based systems (like Linux and macOS)
+                file_path = os.path.join('/tmp', file.filename)
+            file.save(file_path)
 
-    file.save(file_path)
-    image = imgurUpload(file_path)
-    print('got image file')
-    today = str(datetime.today().date())
-    response = openApiCall(key, image)
-    
-    #Parsing the response into a dictionary
-    response.message.content = response.message.content.replace('\n', '').replace('*','').split('content=', 1)[-1].split(', role=',1)[0]
-    substrings = ['Description', 'Type of Waste', 'Biodegradable', 'Decompose Time', 'Approximate Weight', 'Dimensions', 'Amount of Liters of Water to Produce']
-    
-    #adds double quotes around the fields
-    for substring in substrings:
-        response.message.content = response.message.content.replace(substring, ', \"' + substring + '\"')
-    
-    #adds double quotes around the values
-    response.message.content = response.message.content.replace(', \"', '\", \"').replace(': ', ': \"')
-    response.message.content = response.message.content.replace('Title', '\"Title\"')
-    response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\", \"date\": \"' + today + '\"}'
+        image = imgurUpload(file_path)
+        print('got image file')
+        today = str(datetime.today().date())
+
+        response = openApiCall(key, image)
+
+        print(response.message.content)
+
+        try:
+            #Parsing the response into a dictionary
+            responseTemp = response.message.content
+            response.message.content = response.message.content.replace('\n', '').replace('*','').split('content=', 1)[-1].split(', role=',1)[0]
+            if(response.message.content == responseTemp):
+                return jsonify({"error": "Invalid photo content"}), 400
+            substrings = ['Description', 'Type of Waste', 'Biodegradable', 'Decompose Time', 'Approximate Weight', 'Dimensions', 'Amount of Liters of Water to Produce']
+
+            #adds double quotes around the fields
+            for substring in substrings:
+                response.message.content = response.message.content.replace(substring, ', \"' + substring + '\"')
+            response.message.content = response.message.content.replace(', \"', '\", \"').replace(': ', ': \"')
+            response.message.content = response.message.content.replace('Title', '\"Title\"')
+            response.message.content = '{\"' + response.message.content[1:-1] + '\" , \"image\": \"' + image + '\", \"date\": \"' + today + '\"}'
+        except json.JSONDecodeError as e:
+            print(f"JSONDecodeError: {e}")
+            return jsonify({"error": "Invalid photo content"}), 400
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return jsonify({"error": "An unexpected error occurred"}), 500
+        
+        collection = atlas_client.get_collection('Tokens')
+        token_id = ObjectId("66aebc350f395a956c3c050b")
+        token_doc = collection.find_one({'_id': token_id})
+
+        print(token_doc)
+
+        if token_doc is not None and 'balance' in token_doc:
+            new_balance = int(token_doc['balance']) + 1
+            collection.update_one({'_id': token_id}, {'$set': {'balance': new_balance}})
+        else:
+            print("Token document not found or 'balance' field is missing")
 
     collection = atlas_client.get_collection('Image Attributes')
     result = collection.insert_one(json.loads(response.message.content))
@@ -140,6 +163,23 @@ def fetch_item():
         return jsonify(item)
     except Exception as e:
         return jsonify({"error": f"Database error: {e}"}), 500
+
+
+@app.route('/fetchbalance', methods=['GET'])
+def fetch_balance():
+    collection = atlas_client.get_collection('Tokens')
+    token_id = ObjectId("66aebc350f395a956c3c050b")
+    token_doc = collection.find_one({'_id': token_id})
+
+    print(token_doc)
+
+    if token_doc is not None and 'balance' in token_doc:
+        new_balance = int(token_doc['balance']) + 1
+        collection.update_one({'_id': token_id}, {'$set': {'balance': new_balance}})
+    else:
+        print("Token document not found or 'balance' field is missing")
+    
+    return jsonify({"balance": new_balance})
 
 if __name__ == '__main__':
     app.run(debug=True)
