@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { playSound } from '../../helper/clickSound'
 
 export default function History() {
     const [trashArray, setTrashArray] = useState([]);
@@ -41,7 +42,7 @@ export default function History() {
 
                 return (
                     <Link key={index} href={`/history/${trash["_id"]}`}>
-                        <div className={`${typeColors[trash["Type of Waste"]]} rounded-lg drop-shadow-2xl w-44 h-48 mb-4 flex p-4 flex-col`}>
+                        <div className={`${typeColors[trash["Type of Waste"]]} rounded-lg drop-shadow-2xl w-44 h-48 mb-4 flex p-4 flex-col`} onClick={playSound}>
                             <h1 className="text-white font-bold text-xl tracking-wide mb-2">{trash["Title"]}</h1>
                             <div className="flex items-center justify-between mt-4">
                                 <div className="bg-white p-1 rounded-full opacity-65">

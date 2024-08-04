@@ -1,5 +1,6 @@
 'use client';
 import Link from 'next/link';
+import { playSound } from './helper/clickSound'
 
 export default function LaunchPage() {
   return (
@@ -7,7 +8,7 @@ export default function LaunchPage() {
       <h1 className="font-pocketmonk text-white text-8xl pb-4">Welcome</h1>
       <img src="/images/ecodex.png" className="h-80 w-auto rounded-2xl mb-6" />
       <Link href="/home">
-        <div className="py-12 px-8 bg-green-600 font-gameboy text-white rounded-xl text-2xl font-black drop-shadow-2xl">
+        <div className="py-12 px-8 bg-green-600 font-gameboy text-white rounded-xl text-2xl font-black drop-shadow-2xl" onClick={playSound}>
           Launch App
         </div>
       </Link>

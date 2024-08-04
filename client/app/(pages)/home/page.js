@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
+import { playSound } from '../../helper/clickSound'
 
 export default function Home() {
     const [headerText, setHeaderText] = useState("");
@@ -76,7 +77,7 @@ export default function Home() {
             <div className="mb-2">
                 {/* div for redeem points */}
                 <Link href="/redeem">
-                    <div className="flex flex-row rounded-lg items-center justify-around mx-1 px-2 py-4 bg-[#4D5F48] mb-2 active:bg-green-900 transition-colors duration-200">
+                    <div className="flex flex-row rounded-lg items-center justify-around mx-1 px-2 py-4 bg-[#4D5F48] mb-2 active:bg-green-900 transition-colors duration-200" onClick={playSound}>
                         <img 
                             src="/images/eco-coin.png"
                             alt="leaf"
@@ -90,7 +91,7 @@ export default function Home() {
 
                 {/* div for view ecodex button */}
                 <Link href="/history" >
-                    <div className="flex flex-row rounded-lg items-center justify-around mx-1 px-2 py-4 bg-secondary-0 active:bg-red-700 transition-colors duration-200">
+                    <div className="flex flex-row rounded-lg items-center justify-around mx-1 px-2 py-4 bg-secondary-0 active:bg-red-700 transition-colors duration-200" onClick={playSound}>
                         <img 
                             src="/images/book.png"
                             alt="leaf"
