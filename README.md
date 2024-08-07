@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-  <img src="https://github.com/josephleungg/EcoDex/blob/main/client/public/images/ecodex-trans.png?raw=true" alt="drawing" width="150"/>
+  <img src="https://github.com/josephleungg/EcoDex/blob/main/client/public/images/ecodex-trans.png?raw=true" alt="drawing" width="170"/>
   <h1>EcoDex</h1>
   <p align="center">
     Gamified platform designed to help users understand and manage waste more effectively by scanning and contributing to environmental sustainability. 
@@ -30,6 +30,22 @@ Hackathon Project for TerraHacks 2024
 - [Tristan (@Tristanv0)](https://github.com/Tristanv0) 
 - [Joseph (@josephleungg )](https://github.com/josephleungg)
 - [Dominic (@chen-dominic)](https://github.com/chen-dominic)
+
+## Technologies Used [![Technologies](https://img.shields.io/badge/Technologies-blue)](https://github.com/KU-5H/ClubHub?tab=readme-ov-file#technologies-used-)
+### Frontend
+[![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/en)
+[![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
+- WIP
+
+### Backend
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/en/3.0.x/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+
+- WIP
 
 ## Installation [![Installation](https://img.shields.io/badge/Installation-purple)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#installation-)
 ```bash
