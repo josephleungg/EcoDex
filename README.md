@@ -31,7 +31,7 @@ Hackathon Project for TerraHacks 2024
 - [Joseph (@josephleungg )](https://github.com/josephleungg)
 - [Dominic (@chen-dominic)](https://github.com/chen-dominic)
 
-## Technologies Used [![Technologies](https://img.shields.io/badge/Technologies-blue)](https://github.com/KU-5H/ClubHub?tab=readme-ov-file#technologies-used-)
+## Technologies Used [![Technologies](https://img.shields.io/badge/Technologies-blue)](https://github.com/josephleungg/EcoDex/tree/main?tab=readme-ov-file#technologies-used-)
 ### Frontend
 [![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
