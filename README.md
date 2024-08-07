@@ -8,15 +8,15 @@
     ·
     <a href="">Features</a>
     ·
-    <a href="https://github.com/josephleungg/EcoDex/edit/main/README.md#installation-">Installation</a>
+    <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#installation-">Installation</a>
     ·
     <a href="">Tech Stack</a>
     ·
-    <a href="https://github.com/josephleungg/EcoDex/edit/main/README.md#contributors-">Contributers</a>
+    <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#contributors-">Contributers</a>
   </p>
 </div>
 
-## What is EcoDex? [![About](https://img.shields.io/badge/About-green)](https://github.com/josephleungg/EcoDex/edit/main/README.md#what-is-ecodex-)
+## What is EcoDex? [![About](https://img.shields.io/badge/About-green)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#what-is-ecodex-)
 
 <img src="https://raw.githubusercontent.com/josephleungg/EcoDex/main/client/public/images/EcoDex MarkDown.png?raw=true" alt="drawing" width="1200"/>
 <br/>
@@ -24,14 +24,13 @@
 Hackathon Project for TerraHacks 2024
 
 
-## Contributors [![Contributors](https://img.shields.io/badge/Contributors-brown)](https://github.com/josephleungg/EcoDex/edit/main/README.md#contributors-)
+## Contributors [![Contributors](https://img.shields.io/badge/Contributors-brown)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#contributors-)
 - [Kush (@KU-5H)](https://github.com/KU-5H)
 - [Tristan (@Tristanv0)](https://github.com/Tristanv0) 
 - [Joseph (@josephleungg )](https://github.com/josephleungg)
 - [Dominic (@chen-dominic)](https://github.com/chen-dominic)
 
-
-## Installation [![Installation](https://img.shields.io/badge/Installation-purple)](https://github.com/josephleungg/EcoDex/edit/main/README.md#installation-)
+## Installation [![Installation](https://img.shields.io/badge/Installation-purple)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#installation-)
 ```bash
 # Clone this repository
 $ git clone https://github.com/josephleungg/EcoDex
