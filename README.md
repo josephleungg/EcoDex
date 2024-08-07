@@ -11,7 +11,7 @@
     ·
     <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#installation-">Installation</a>
     ·
-    <a href="">Tech Stack</a>
+    <a href="https://github.com/josephleungg/EcoDex/tree/main?tab=readme-ov-file#technologies-used-">Tech Stack</a>
     ·
     <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#contributors-">Contributers</a>
   </p>
