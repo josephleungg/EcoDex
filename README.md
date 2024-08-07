@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-  <img src="https://github.com/josephleungg/EcoDex/blob/main/client/public/images/ecodex-leaf-opacity.png?raw=true" alt="drawing" width="150"/>
+  <img src="https://github.com/josephleungg/EcoDex/blob/main/client/public/images/ecodex-trans.png?raw=true" alt="drawing" width="150"/>
   <h1>EcoDex</h1>
   <p align="center">
     Gamified platform designed to help users understand and manage waste more effectively by scanning and contributing to environmental sustainability. 
