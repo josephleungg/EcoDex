@@ -5,8 +5,6 @@
   <p align="center">
     Gamified platform designed to help users understand and manage waste more effectively by scanning and contributing to environmental sustainability. 
     <br />
-    <a href="">View Demo</a>
-    ·
     <a href="">Features</a>
     ·
     <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#installation-">Installation</a>
