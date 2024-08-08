@@ -5,6 +5,8 @@
   <p align="center">
     Gamified platform designed to help users understand and manage waste more effectively by scanning and contributing to environmental sustainability. 
     <br />
+    <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#video-demo-">Video Demo</a>
+    ·
     <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#features-">Features</a>
     ·
     <a href="https://github.com/josephleungg/EcoDex?tab=readme-ov-file#installation-">Installation</a>
@@ -15,13 +17,14 @@
   </p>
 </div>
 
-https://github.com/user-attachments/assets/3775d3d5-0e10-4634-9722-e2c58a5fb282
-
 ## What is EcoDex? [![About](https://img.shields.io/badge/About-green)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#what-is-ecodex-)
 
 <img src="https://raw.githubusercontent.com/josephleungg/EcoDex/main/client/public/images/EcoDex MarkDown.png?raw=true" alt="drawing" width="1200"/>
 <br/>
 <h4>EcoDex, is a gamified platform that helps users understand and manage waste more effectively. By allowing users to scan waste, it provides information on the type of waste, proper disposal methods, environmental impact, and other waste information. This interactive approach aims to educate users and promote better waste management practices.</h4>
+
+## Video Demo [![Demo](https://img.shields.io/badge/Demo-yellow)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#video-demo-)
+https://github.com/user-attachments/assets/3775d3d5-0e10-4634-9722-e2c58a5fb282
 
 ## Features [![Contributors](https://img.shields.io/badge/Features-green)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#features-)
 - Image/object recognition
