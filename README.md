@@ -17,6 +17,8 @@
   </p>
 </div>
 
+https://github.com/user-attachments/assets/3775d3d5-0e10-4634-9722-e2c58a5fb282
+
 ## What is EcoDex? [![About](https://img.shields.io/badge/About-green)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#what-is-ecodex-)
 
 <img src="https://raw.githubusercontent.com/josephleungg/EcoDex/main/client/public/images/EcoDex MarkDown.png?raw=true" alt="drawing" width="1200"/>
