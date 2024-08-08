@@ -24,6 +24,8 @@ https://github.com/user-attachments/assets/3775d3d5-0e10-4634-9722-e2c58a5fb282
 <h4>EcoDex, is a gamified platform that helps users understand and manage waste more effectively. By allowing users to scan waste, it provides information on the type of waste, proper disposal methods, environmental impact, and other waste information. This interactive approach aims to educate users and promote better waste management practices.</h4>
 Hackathon Project for TerraHacks 2024
 
+## Features [![Contributors](https://img.shields.io/badge/Features-green)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#contributors-)
+
 
 ## Contributors [![Contributors](https://img.shields.io/badge/Contributors-brown)](https://github.com/josephleungg/EcoDex?tab=readme-ov-file#contributors-)
 - [Kush (@KU-5H)](https://github.com/KU-5H)
